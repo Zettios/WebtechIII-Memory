@@ -1,0 +1,28 @@
+html, body {
+    margin: 0;
+    font-family: Calibri;
+}
+
+#game_title {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+#table {
+    width: 600px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1em;
+}
+
+.card {
+    background: rgb(40, 230, 120);
+    color: white;
+    font-weight: 700;
+}
+
+.open {
+    background: rgb(180, 62, 226);
+}
