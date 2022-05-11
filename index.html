@@ -5,12 +5,173 @@
         <link href="styles/general.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <div id="game_title">
-            JavaScript Memory
+        <div class="grid_container">
+            <div class="game_section section_margin">
+                <div class="text_center">
+                    <h2 class="remove-bottom-margin">Memory game</h2>
+                    <br>
+                    <p class="remove-margin">Verlopen tijd: 13 seconden</p>
+                    <p class="remove-margin">Gevonden kaart paren: 1</p>
+                    <p class="remove-margin">Resterende toontijd:</p>
+                    <div class="toontijd_meter">
+                        <div class="toontijd_inner">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card_container text_center">
+                    <div class="card_closed">
+                        Card 1
+                    </div>
+                    <div class="card_open">
+                        Card 2
+                    </div>
+                    <div class="card_closed">
+                        Card 3
+                    </div>
+                    <div class="card_closed">
+                        Card 4
+                    </div>
+                    <div class="card_closed">
+                        Card 5
+                    </div>
+                    <div class="card_matched">
+                        Card 6
+                    </div>
+                    <div class="card_closed">
+                        Card 7
+                    </div>
+                    <div class="card_closed">
+                        Card 8
+                    </div>
+                    <div class="card_closed">
+                        Card 9
+                    </div>
+                    <div class="card_matched">
+                        Card 10
+                    </div>
+                    <div class="card_closed">
+                        Card 11
+                    </div>
+                    <div class="card_closed">
+                        Card 12
+                    </div>
+                    <div class="card_closed">
+                        Card 13
+                    </div>
+                    <div class="card_closed">
+                        Card 14
+                    </div>
+                    <div class="card_closed">
+                        Card 15
+                    </div>
+                    <div class="card_closed">
+                        Card 16
+                    </div>
+                    <div class="card_closed">
+                        Card 17
+                    </div>
+                    <div class="card_closed">
+                        Card 18
+                    </div>
+                    <div class="card_closed">
+                        Card 19
+                    </div>
+                    <div class="card_closed">
+                        Card 20
+                    </div>
+                    <div class="card_closed">
+                        Card 21
+                    </div>
+                    <div class="card_closed">
+                        Card 22
+                    </div>
+                    <div class="card_closed">
+                        Card 23
+                    </div>
+                    <div class="card_closed">
+                        Card 24
+                    </div>
+                    <div class="card_closed">
+                        Card 25
+                    </div>
+                    <div class="card_closed">
+                        Card 26
+                    </div>
+                    <div class="card_closed">
+                        Card 27
+                    </div>
+                    <div class="card_closed">
+                        Card 28
+                    </div>
+                    <div class="card_closed">
+                        Card 29
+                    </div>
+                    <div class="card_closed">
+                        Card 30
+                    </div>
+                    <div class="card_closed">
+                        Card 31
+                    </div>
+                    <div class="card_closed">
+                        Card 32
+                    </div>
+                    <div class="card_closed">
+                        Card 33
+                    </div>
+                    <div class="card_closed">
+                        Card 34
+                    </div>
+                    <div class="card_closed">
+                        Card 35
+                    </div>
+                    <div class="card_closed">
+                        Card 36
+                    </div>
+                </div>
+            </div>
+            <div class="settings_section section_margin">
+                <div class="settings_container">
+                    <div class="top_five">
+                        <b>Top vijf.</b>
+                        <ul>
+                            <li>1. Barack Obama : 200</li>
+                            <li>2. Bernie Sanders : 300</li>
+                            <li>3. Hilary Clinton : 400</li>
+                            <li>4. Donald Troep : 500</li>
+                            <li>5. Jeb Bush : 600</li>
+                        </ul>
+                    </div>
+                    <div class="avg_playtime">
+                        <b>Gemiddelde speeltijd:</b> 05 (645)
+                    </div>
+                    <div class="board_setting">
+                        <b>Karakter op kaarten:</b>
+                        <select name="characters" id="characters">
+                            <option value="*">*</option>
+                            <option value="x">x</option>
+                            <option value="o">o</option>
+                        </select> <br>
+                        <b>Afmeting bord:</b>
+                        <select name="size" id="size">
+                            <option value="6">6</option>
+                            <option value="12">12</option>
+                            <option value="18">18</option>
+                        </select> <br>
+                    </div>
+                    <div class="color_settings">
+                        <button class="color_buttons">Kaartkleur</button>
+                        <input type="color" id="default_card" name="head" value="#e66465">
+                        <br>
+                        <button class="color_buttons">Open</button>
+                        <input type="color" id="open" name="head" value="#e66465">
+                        <br>
+                        <button class="color_buttons">Gesloten</button>
+                        <input type="color" id="closed" name="head" value="#e66465">
+                        <br>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="table">
-        </div>
-
-        <script src="scripts/static.js"></script>
     </body>
 </html>

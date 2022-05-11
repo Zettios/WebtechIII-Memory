@@ -1,28 +1,132 @@
 html, body {
+    font-family: Arial;
+}
+
+.remove-margin {
     margin: 0;
-    font-family: Calibri;
 }
 
-#game_title {
-    font-weight: 700;
-    font-size: 20px;
+.remove-bottom-margin {
+    margin-bottom: 0;
 }
 
-#table {
-    width: 600px;
-    height: 600px;
+.text_center {
+    text-align: center;
+}
+
+.grid_container {
+    width: 100%;
+    height: auto;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 1em;
+    gap: 25px 5px;
+    grid-template-columns: 2fr 1fr;
 }
 
-.card {
-    background: rgb(40, 230, 120);
-    color: white;
-    font-weight: 700;
+.section_margin {
+    margin: 10px 10px;
 }
 
-.open {
-    background: rgb(180, 62, 226);
+.game_section {
+    grid-column-start: 1;
+    background-color: blueviolet;
+    min-width: 400px;
 }
+
+.toontijd {
+    width: 100%;
+    height: 20px;
+    background: chartreuse;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.toontijd_meter {
+    display: grid;
+    width: 100%;
+    height: 20px;
+    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.toontijd_inner {
+    background: darkgreen;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    grid-column: 3/4;
+}
+
+.card_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-content: space-evenly;
+}
+
+.card_open {
+    margin: 5px;
+    padding: 50px 10px;
+    background: darkgreen;
+}
+
+.card_closed {
+    margin: 5px;
+    padding: 50px 10px;
+    background: lightgreen;
+}
+
+.card_matched {
+    margin: 5px;
+    padding: 50px 10px;
+    background: purple;
+}
+
+.settings_section {
+    grid-column-start: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr;
+    background-color: darkred;
+    min-width: 400px;
+}
+
+.settings_container {
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: column;
+    flex-basis: auto;
+    background: purple;
+    align-items: stretch;
+    margin: 5px;
+    min-width: 300px;
+}
+
+.top_five {
+    align-self: center;
+    margin-bottom: 5px;
+}
+
+.avg_playtime {
+    align-self: center;
+    margin-bottom: 10px;
+}
+
+.board_setting {
+    align-self: center;
+    margin-bottom: 15px;
+}
+
+.color_settings {
+    align-self: center;
+    margin-bottom: 15px;
+}
+
+.color_buttons {
+    width: 90px;
+    height: auto;
+}
+
+
