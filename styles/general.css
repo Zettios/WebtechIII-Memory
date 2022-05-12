@@ -37,19 +37,13 @@ html, body {
     border: solid 2px black;
 }
 
-progress[value]::-webkit-progress-value {
+::-webkit-progress-value {
     background-color: green;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
-/*::-webkit-progress-value {*/
-/*    background-color: green;*/
-/*}*/
-
-/*::-moz-progress-bar {*/
-/*    background-color: green;*/
-/*}*/
+::-moz-progress-bar {
+    background-color: green;
+}
 
 .card_container {
     display: grid;
