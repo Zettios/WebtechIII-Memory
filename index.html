@@ -3,134 +3,130 @@
     <head>
         <title>Memory</title>
         <link href="styles/general.css" type="text/css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <div class="grid_container">
-            <div class="game_section section_margin">
-                <div class="text_center">
-                    <h2 class="remove-bottom-margin">Memory game</h2>
-                    <br>
+        <div class="container">
+            <div class="game_section">
+                <div class="game_info text_center">
+                    <h2>Memory game</h2>
                     <p class="remove-margin">Verlopen tijd: 13 seconden</p>
                     <p class="remove-margin">Gevonden kaart paren: 1</p>
                     <p class="remove-margin">Resterende toontijd:</p>
-                    <div class="toontijd_meter">
-                        <div class="toontijd_inner">
-                        </div>
-                    </div>
+                    <progress id="rest_time" value="90" max="100"></progress>
                 </div>
-                <br>
                 <div class="card_container text_center">
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 1
                     </div>
-                    <div class="card_open">
+                    <div class="card_open card_size">
                         Card 2
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 3
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 4
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 5
                     </div>
-                    <div class="card_matched">
+                    <div class="card_matched card_size">
                         Card 6
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 7
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 8
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 9
                     </div>
-                    <div class="card_matched">
+                    <div class="card_matched card_size">
                         Card 10
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 11
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 12
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 13
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 14
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 15
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 16
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 17
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 18
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 19
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 20
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 21
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 22
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 23
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 24
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 25
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 26
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 27
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 28
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 29
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 30
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 31
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 32
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 33
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 34
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 35
                     </div>
-                    <div class="card_closed">
+                    <div class="card_closed card_size">
                         Card 36
                     </div>
                 </div>
             </div>
-            <div class="settings_section section_margin">
+            <div class="settings_section">
                 <div class="settings_container">
                     <div class="top_five">
                         <b>Top vijf.</b>
@@ -159,16 +155,18 @@
                             <option value="18">18</option>
                         </select> <br>
                     </div>
-                    <div class="color_settings">
-                        <button class="color_buttons">Kaartkleur</button>
-                        <input type="color" id="default_card" name="head" value="#e66465">
-                        <br>
-                        <button class="color_buttons">Open</button>
-                        <input type="color" id="open" name="head" value="#e66465">
-                        <br>
-                        <button class="color_buttons">Gesloten</button>
-                        <input type="color" id="closed" name="head" value="#e66465">
-                        <br>
+                    <div class="color_section">
+                        <button class="color_buttons">Gesloten kaarten</button>
+                        <div id="closed_card_color" class="card_color"></div>
+
+                        <button class="color_buttons">Open kaarten</button>
+                        <div id="open_card_color" class="card_color"></div>
+
+                        <button class="color_buttons">Gevonden paren</button>
+                        <div id="matched_cards_color" class="card_color"></div>
+                    </div>
+                    <div class="game_start_section">
+                        <button class="start_button">Start</button>
                     </div>
                 </div>
             </div>

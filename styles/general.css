@@ -14,119 +14,172 @@ html, body {
     text-align: center;
 }
 
-.grid_container {
+.container {
     width: 100%;
-    height: auto;
-    display: grid;
-    gap: 25px 5px;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
 }
 
-.section_margin {
-    margin: 10px 10px;
-}
-
+/** GAME SECTION CSS **/
 .game_section {
-    grid-column-start: 1;
-    background-color: blueviolet;
-    min-width: 400px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    flex-grow: 8;
 }
 
-.toontijd {
-    width: 100%;
+#rest_time {
+    margin-top: 10px;
     height: 20px;
-    background: chartreuse;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+    appearance: none;
+    border: solid 2px black;
 }
 
-.toontijd_meter {
-    display: grid;
-    width: 100%;
-    height: 20px;
-    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    justify-content: center;
-    margin-top: 5px;
+progress[value]::-webkit-progress-value {
+    background-color: green;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
-.toontijd_inner {
-    background: darkgreen;
-    border-style: solid;
-    border-width: 2px;
-    border-color: white;
-    grid-column: 3/4;
-}
+/*::-webkit-progress-value {*/
+/*    background-color: green;*/
+/*}*/
+
+/*::-moz-progress-bar {*/
+/*    background-color: green;*/
+/*}*/
 
 .card_container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-evenly;
 }
 
-.card_open {
+.card_size {
     margin: 5px;
-    padding: 50px 10px;
-    background: darkgreen;
+    padding: 36px 5px;
 }
 
 .card_closed {
-    margin: 5px;
-    padding: 50px 10px;
     background: lightgreen;
 }
 
+.card_closed:hover {
+    cursor: pointer;
+}
+
+.card_open {
+    background: darkgreen;
+}
+
 .card_matched {
-    margin: 5px;
-    padding: 50px 10px;
     background: purple;
 }
 
+/** SETTING SECTION CSS **/
 .settings_section {
-    grid-column-start: 2;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr;
-    background-color: darkred;
-    min-width: 400px;
+    min-width: 300px;
+    flex-grow: 2;
 }
 
 .settings_container {
-    grid-row: 2/3;
+    padding: 5px;
     display: flex;
     flex-direction: column;
-    flex-basis: auto;
-    background: purple;
-    align-items: stretch;
-    margin: 5px;
-    min-width: 300px;
 }
 
 .top_five {
-    align-self: center;
-    margin-bottom: 5px;
+    padding-bottom: 10px;
 }
 
 .avg_playtime {
-    align-self: center;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .board_setting {
-    align-self: center;
-    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+.color_section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .color_settings {
-    align-self: center;
-    margin-bottom: 15px;
+    grid-column: 1/2;
+    padding-bottom: 10px;
 }
 
 .color_buttons {
-    width: 90px;
     height: auto;
+    margin: 5px;
 }
 
+.card_color {
+    height: auto;
+    margin: 5px;
+    box-shadow: 2px 2px 5px black inset;
+}
 
+#closed_card_color {
+    background: lightgreen;
+}
+
+#open_card_color {
+
+    background: darkgreen;
+}
+
+#matched_cards_color {
+    background: purple;
+}
+
+.game_start_section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.start_button {
+    grid-column: 1/2;
+    height: auto;
+    margin: 5px;
+}
+
+/** MEDIA QUERIES **/
+@media screen and (min-width: 600px) {
+    .card_container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .card_container {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        flex-direction: row;
+        column-gap: 15px;
+    }
+
+    .settings_section {
+        padding: 0px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .settings_container {
+
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .card_size {
+        padding: 45px 5px;
+    }
+}
