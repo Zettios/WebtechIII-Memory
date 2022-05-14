@@ -1,3 +1,5 @@
+// Deze had Ebbe gemaakt en toegevoeegd, maar word niet gebruikt.
+
 var table = document.querySelector("#table");
 
 for(var y = 0; y < 6; y++) {

@@ -54,6 +54,7 @@ html, body {
 .card_size {
     margin: 5px;
     padding: 36px 5px;
+    border: none;
 }
 
 .card_closed {
@@ -66,6 +67,10 @@ html, body {
 
 .card_open {
     background: darkgreen;
+}
+
+button:disabled {
+    color: black;
 }
 
 .card_matched {
