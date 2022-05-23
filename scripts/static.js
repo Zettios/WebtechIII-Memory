@@ -9,22 +9,20 @@ let defaultMatchedColor = "#6a0dad";
 document.querySelector('.start_button').onclick = initialiseGame;
 
 document.addEventListener("DOMContentLoaded", function() {
-
-    !async function(){
-        let data = await fetch("https://dog.ceo/api/breeds/image/random/3'")
-            .then((response) => response.json())
-            .then(data => { return data; })
-            .catch(error => { console.error(error); });
-
-        console.log(data.message);
-    }();
-
     let cards = document.querySelectorAll('.memory_cards');
     for (let i = 0; i < cards.length; i++) {
         cards[i].id = "card_" + (i+1);
         cards[i].addEventListener("touchstart", cardHandler, false);
         cards[i].onclick = cardHandler;
     }
+
+    !async function(){
+        let data = await fetch("https://dog.ceo/api/breeds/image/random/"+(cards.length/2))
+            .then((response) => response.json())
+            .then(data => { return data; })
+            .catch(error => { console.error(error); });
+        console.log(data.message);
+    }();
 
     closedCardColorPicker = document.querySelector('#closed_card_color');
     closedCardColorPicker.value = defaultClosedColor;
@@ -47,8 +45,6 @@ function cardHandler(e) {
         e.target.classList.remove('card_closed')
         e.target.style.background
     } else if (e.target.classList.contains("card_open")) {
-        // e.target.classList.add('card_closed')
-        // e.target.classList.remove('card_open')
         console.log('todo');
     } else {
         console.log('todo');
@@ -88,7 +84,5 @@ function resetCards() {
 }
 
 function initialiseGame() {
-    console.log('e');
     resetCards();
-
 }
