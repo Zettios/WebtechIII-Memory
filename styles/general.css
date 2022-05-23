@@ -51,14 +51,13 @@ html, body {
     justify-content: space-evenly;
 }
 
-.card_size {
+.memory_cards {
     margin: 5px;
     padding: 36px 5px;
     border: none;
 }
 
 .card_closed {
-    background: lightgreen;
 }
 
 .card_closed:hover {
@@ -66,15 +65,9 @@ html, body {
 }
 
 .card_open {
-    background: darkgreen;
-}
-
-button:disabled {
-    color: black;
 }
 
 .card_matched {
-    background: purple;
 }
 
 /** SETTING SECTION CSS **/
@@ -104,6 +97,7 @@ button:disabled {
 .color_section {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
 }
 
 .color_settings {
@@ -117,22 +111,21 @@ button:disabled {
 }
 
 .card_color {
-    height: auto;
+    width: 100%;
     margin: 5px;
-    box-shadow: 2px 2px 5px black inset;
+    //box-shadow: 2px 2px 5px black inset;
 }
 
 #closed_card_color {
-    background: lightgreen;
+    //background: lightgreen;
 }
 
 #open_card_color {
-
-    background: darkgreen;
+    //background: darkgreen;
 }
 
 #matched_cards_color {
-    background: purple;
+    //background: purple;
 }
 
 .game_start_section {
@@ -178,7 +171,7 @@ button:disabled {
 }
 
 @media screen and (min-width: 1600px) {
-    .card_size {
+    .memory_cards {
         padding: 45px 5px;
     }
 }
