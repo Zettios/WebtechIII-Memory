@@ -1,5 +1,5 @@
 html, body {
-    font-family: Arial;
+    font-family: Arial, serif;
 }
 
 .remove-margin {
@@ -14,11 +14,31 @@ html, body {
     text-align: center;
 }
 
+#victory {
+    position: fixed;
+    visibility: hidden;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.5);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#win-text {
+    font-size: 20px;
+}
+
 .container {
     width: 100%;
     display: flex;
     flex-direction: column;
     row-gap: 5px;
+    justify-content: center;
 }
 
 /** GAME SECTION CSS **/
@@ -27,7 +47,6 @@ html, body {
     display: flex;
     flex-direction: column;
     row-gap: 5px;
-    flex-grow: 8;
 }
 
 #rest_time {
@@ -47,13 +66,16 @@ html, body {
 
 .card_container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-evenly;
+    margin-top: 30px;
 }
 
 .memory_cards {
     margin: 5px;
-    padding: 36px 5px;
+    width: 80px;
+    height: 80px;
+    justify-self: center;
     border: none;
 }
 
@@ -73,7 +95,9 @@ html, body {
 /** SETTING SECTION CSS **/
 .settings_section {
     min-width: 300px;
-    flex-grow: 2;
+    width: 75%;
+    align-self: center;
+    padding-top: 20px;
 }
 
 .settings_container {
@@ -83,18 +107,22 @@ html, body {
 }
 
 .top_five {
+    align-self: center;
     padding-bottom: 10px;
 }
 
 .avg_playtime {
+    align-self: center;
     padding-bottom: 10px;
 }
 
 .board_setting {
-    padding-bottom: 10px;
+    align-self: center;
+    margin: 10px 0px;
 }
 
 .color_section {
+    align-self: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -103,6 +131,7 @@ html, body {
 .color_settings {
     grid-column: 1/2;
     padding-bottom: 10px;
+    margin-top: 20px;
 }
 
 .color_buttons {
@@ -117,49 +146,64 @@ html, body {
 }
 
 #closed_card_color {
-    //background: lightgreen;
 }
 
 #open_card_color {
-    //background: darkgreen;
 }
 
 #matched_cards_color {
-    //background: purple;
 }
 
 .game_start_section {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 20px;
 }
 
 .start_button {
-    grid-column: 1/2;
     height: auto;
     margin: 5px;
+    width: 75%;
+    justify-self: center;
 }
 
 /** MEDIA QUERIES **/
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 400px) {
     .card_container {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 600px) {
+    .memory_cards {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+@media screen and (min-width: 700px) {
     .card_container {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media screen and (min-width: 920px) {
+    .container {
+        flex-direction: row;
+    }
+
+    .settings_section {
+        width: auto;
     }
 }
 
 @media screen and (min-width: 1200px) {
     .container {
-        flex-direction: row;
         column-gap: 15px;
     }
 
     .settings_section {
-        padding: 0px 20px;
+        padding: 0 20px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -172,6 +216,7 @@ html, body {
 
 @media screen and (min-width: 1600px) {
     .memory_cards {
-        padding: 45px 5px;
+        width: 100px;
+        height: 100px;
     }
 }

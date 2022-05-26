@@ -2,128 +2,132 @@
 <html xmlns="http://www.w3.org/1999/html">
     <head>
         <title>Memory</title>
+        <script type="text/javascript" src="scripts/static.js"></script>
         <link href="styles/general.css" type="text/css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
+        <div id="victory">
+            <div id="win-text"></div>
+        </div>
         <div class="container">
             <div class="game_section">
                 <div class="game_info text_center">
                     <h2>Memory game</h2>
-                    <p class="remove-margin">Verlopen tijd: 13 seconden</p>
-                    <p class="remove-margin">Gevonden kaart paren: 1</p>
+                    <p id="timer" class="remove-margin">Verlopen tijd: 0 seconden</p>
+                    <p id="found-pairs" class="remove-margin">Gevonden kaart paren: 0</p>
                     <p class="remove-margin">Resterende toontijd:</p>
                     <progress id="rest_time" value="90" max="100"></progress>
                 </div>
                 <div class="card_container text_center">
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
-                    <button type="button" class="card_closed memory_cards">
-                        <b>*</b>
-                    </button>
+                    <div class="card_closed memory_cards">
+                        
+                    </div>
+                    <div class="card_closed memory_cards">
+                        
+                    </div>
+                    <div class="card_closed memory_cards">
+                        
+                    </div>
+                    <div class="card_closed memory_cards">
+                        
+                    </div>
+                    <div class="card_closed memory_cards">
+                        
+                    </div>
+                    <div class="card_closed memory_cards">
+                        
+                    </div>
+                    <div class="card_closed memory_cards">
+                        
+                    </div>
+                    <div class="card_closed memory_cards">
+                        
+                    </div>
+                    <div class="card_closed memory_cards">
+                        
+                    </div>
+                    <div class="card_closed memory_cards">
+                        
+                    </div>
+                    <div class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
+                    <div  class="card_closed memory_cards">
+                        
+                    </div>
                 </div>
             </div>
             <div class="settings_section">
@@ -142,28 +146,29 @@
                         <label for="average_playtime"><b>Gemiddelde speeltijd:</b></label> <span id="average_playtime">05 (645)</span>
                     </div>
                     <div class="board_setting">
-                        <label for="characters"><b>Karakter op kaarten:</b></label>
-                        <select name="characters" id="characters">
-                            <option value="*">*</option>
-                            <option value="x">x</option>
-                            <option value="o">o</option>
-                        </select> <br>
-                        <label for="board_size"><b>Afmeting bord:</b></label>
-                        <select name="board_size" id="board_size">
-                            <option value="6">6 bij 6</option>
-                            <option value="12">12 bij 12</option>
-                            <option value="18">18 bij 18</option>
-                        </select> <br>
+                        <div class="setting_spacing">
+                            <label for="images"><b>Kaarten plaatjes:</b></label>
+                            <select name="images" id="images">
+                                <option value="0">Willekeurig</option>
+                                <option value="1">Honden</option>
+                                <option value="2">Katten</option>
+                                <option value="3">Lorem picsum</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="setting_spacing">
+                            <label for="board_size"><b>Afmeting bord:</b></label>
+                            <select name="board_size" id="board_size">
+                                <option value="small">3 bij 3</option>
+                                <option value="medium" selected="selected">6 bij 6</option>
+                                <option value="big">12 bij 12</option>
+                            </select>
+                        </div>
+                        <br>
                     </div>
                     <div class="color_section">
-                        Gesloten kaarten:
+                        <label for="closed_card_color">Gesloten kaarten:</label>
                         <input type="color" id="closed_card_color" class="card_color" value="#90EE90">
-
-                        Open karten:
-                        <input type="color" id="open_card_color" class="card_color" value="#013220">
-
-                        Gevonden kaarten:
-                        <input type="color" id="matched_cards_color" class="card_color" value="#6a0dad">
                     </div>
                     <div class="game_start_section">
                         <button type="button" class="start_button" data-message="Deze knop start het spel.">Start</button>
@@ -171,6 +176,5 @@
                 </div>
             </div>
         </div>
-        <script src="scripts/static.js"></script>
     </body>
 </html>
