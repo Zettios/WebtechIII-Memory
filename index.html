@@ -7,8 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <div id="victory">
+        <div aria-hidden="true" id="victory" class="screen-cover">
             <div id="win-text"></div>
+        </div>
+        <div aria-hidden="true" id="loading" class="screen-cover">
+            <div id="loading-text"></div>
         </div>
         <div class="container">
             <div class="game_section">
@@ -16,121 +19,121 @@
                     <h2>Memory game</h2>
                     <p id="timer" class="remove-margin">Verlopen tijd: 0 seconden</p>
                     <p id="found-pairs" class="remove-margin">Gevonden kaart paren: 0</p>
-                    <p class="remove-margin">Resterende toontijd:</p>
-                    <progress id="rest_time" value="90" max="100"></progress>
+                    <label for="rest_time" class="remove-margin">Resterende toontijd:</label>
+                    <br>
+                    <progress id="rest_time" value="90" max="100" aria-label="Resterende toontijd voor kaarten die open zijn" aria-valuenow="90" aria-valuemax="100"></progress>
                 </div>
-                <div class="card_container text_center">
-                    <div class="card_closed memory_cards">
-                        
+                <div aria-label="Container waar alle kaarten in staan" class="card_container text_center">
+                    <div aria-label="Kaart 1" class="card_closed memory_cards">
                     </div>
-                    <div class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 2" class="card_closed memory_cards">
                     </div>
-                    <div class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 3" class="card_closed memory_cards">
                     </div>
-                    <div class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 4" class="card_closed memory_cards">
                     </div>
-                    <div class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 5" class="card_closed memory_cards">
                     </div>
-                    <div class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 6" class="card_closed memory_cards">
                     </div>
-                    <div class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 7" class="card_closed memory_cards">
                     </div>
-                    <div class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 8" class="card_closed memory_cards">
                     </div>
-                    <div class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 9" class="card_closed memory_cards">
                     </div>
-                    <div class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 10" class="card_closed memory_cards">
                     </div>
-                    <div class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 11" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 12" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 13" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 14" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 15" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 16" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 17" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 18"  class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 19" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 20" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 21" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 22"  class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 23" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 24" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 25" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 26" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 27" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 28" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 29" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 30" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 31" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 32" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 33" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 34" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 35" class="card_closed memory_cards">
                     </div>
-                    <div  class="card_closed memory_cards">
-                        
+
+                    <div aria-label="Kaart 36" class="card_closed memory_cards">
                     </div>
                 </div>
             </div>
-            <div class="settings_section">
+            <div aria-label="Sectie voor alle settings en top vijf score" class="settings_section">
                 <div class="settings_container">
                     <div class="top_five">
                         <b>Top vijf.</b>
@@ -147,7 +150,7 @@
                     </div>
                     <div class="board_setting">
                         <div class="setting_spacing">
-                            <label for="images"><b>Kaarten plaatjes:</b></label>
+                            <label aria-label="Optie om de kaarten plaatjes te selecteren" for="images"><b>Kaarten plaatjes:</b></label>
                             <select name="images" id="images">
                                 <option value="0">Willekeurig</option>
                                 <option value="1">Honden</option>
@@ -157,7 +160,7 @@
                         </div>
                         <br>
                         <div class="setting_spacing">
-                            <label for="board_size"><b>Afmeting bord:</b></label>
+                            <label aria-label="Optie om bord groote aan te passen" for="board_size"><b>Afmeting bord:</b></label>
                             <select name="board_size" id="board_size">
                                 <option value="small">3 bij 3</option>
                                 <option value="medium" selected="selected">6 bij 6</option>
@@ -167,11 +170,11 @@
                         <br>
                     </div>
                     <div class="color_section">
-                        <label for="closed_card_color">Gesloten kaarten:</label>
-                        <input type="color" id="closed_card_color" class="card_color" value="#90EE90">
+                        <label aria-label="Kleur kiezer voor gesloten kaarten" for="closed_card_color">Gesloten kaarten:</label>
+                        <input aria-valuenow="#90EE90" type="color" id="closed_card_color" class="card_color" value="#90EE90">
                     </div>
                     <div class="game_start_section">
-                        <button type="button" class="start_button" data-message="Deze knop start het spel.">Start</button>
+                        <button aria-label="Knop om het spel te starten" type="button" class="start_button" data-message="Deze knop start het spel.">Start</button>
                     </div>
                 </div>
             </div>

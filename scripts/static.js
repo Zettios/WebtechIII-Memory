@@ -62,6 +62,7 @@ function resetPairsCounter() {
 
 function iniCardsForGame(amount) {
     //TODO: show loading screen
+    showLoadingScreen();
 
     const RANDOM = "0";
     const DOGS = "1";
@@ -108,7 +109,18 @@ function iniCardsForGame(amount) {
     }
 }
 
+function showLoadingScreen() {
+    let loading = document.getElementById("loading");
+    loading.ariaHidden = "false";
+    loading.style.visibility = "visible";
+    document.getElementById("loading-text").innerHTML = "Loading..."
+}
 
+function hideLoadingScreen() {
+    let loading = document.getElementById("loading");
+    loading.ariaHidden = "true";
+    loading.style.visibility = "hidden";
+}
 
 function processCatAPI(data) {
     let cats = [];
@@ -146,6 +158,7 @@ function setCards(message) {
 
     resetCards();
     //TODO: remove loading screen
+    hideLoadingScreen();
     startTimer();
 }
 
@@ -253,11 +266,15 @@ function checkForWin() {
 
 function showVictoryScreen() {
     document.getElementById("win-text").innerHTML = "Je hebt gewonnen!";
-    document.getElementById("victory").style.visibility = "visible";
+    let victory = document.getElementById("victory");
+    victory.ariaHidden = "false";
+    victory.style.visibility = "visible";
     let vTimer = setInterval(victoryTimer, 3500);
 
     function victoryTimer() {
-        document.getElementById("victory").style.visibility = "hidden";
+        let victory = document.getElementById("victory");
+        victory.ariaHidden = "true";
+        victory.style.visibility = "hidden";
         document.getElementById("win-text").innerHTML = "";
         clearInterval(vTimer);
     }

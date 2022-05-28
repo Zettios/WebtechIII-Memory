@@ -14,7 +14,7 @@ html, body {
     text-align: center;
 }
 
-#victory {
+.screen-cover {
     position: fixed;
     visibility: hidden;
     padding: 0;
