@@ -61,10 +61,8 @@ function resetPairsCounter() {
 
 
 function iniCardsForGame(amount) {
-    //TODO: show loading screen
     showLoadingScreen();
 
-    const RANDOM = "0";
     const DOGS = "1";
     const CATS = "2";
     const LOREM = "3";
@@ -72,13 +70,6 @@ function iniCardsForGame(amount) {
     let choice = document.getElementById("images");
 
     switch (choice.value) {
-        case RANDOM:
-            fetch("https://dog.ceo/api/breeds/image/random/"+amount)
-                .then((response) => response.json())
-                .then(data => data.message)
-                .catch(error => { return error.status } )
-                .then(message => setCards(message));
-            break;
         case DOGS:
             fetch("https://dog.ceo/api/breeds/image/random/"+amount)
                 .then((response) => response.json())
@@ -86,7 +77,6 @@ function iniCardsForGame(amount) {
                 .then(message => setCards(message));
             break;
         case CATS:
-            console.log("cats");
             fetch("https://api.thecatapi.com/v1/images/search?limit="+amount+"&mime_types=jpg,png")
                 .then((response) => response.json())
                 .then(data => processCatAPI(data))
@@ -99,7 +89,6 @@ function iniCardsForGame(amount) {
                 .then(message => setCards(message));
             break;
         default:
-            console.log("default");
             fetch("https://dog.ceo/api/breeds/image/random/"+amount)
                 .then((response) => response.json())
                 .then(data => data.message)
@@ -140,7 +129,6 @@ function processLoremAPI(data) {
 
 
 function setCards(message) {
-    console.log(message);
     let images = []
 
     for (let i = 0; i < message.length; i++) {
@@ -154,10 +142,7 @@ function setCards(message) {
         cardPairs[cards[i].id] = complete[i];
     }
 
-    console.log(cardPairs);
-
     resetCards();
-    //TODO: remove loading screen
     hideLoadingScreen();
     startTimer();
 }
