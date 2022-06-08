@@ -50,6 +50,11 @@ body {
     border: black 1px solid;
     min-height: 25px;
 }
+
+#errors {
+    color: red;
+}
+
 .login-button {
     background-color: #4CAF50;
     border: none;

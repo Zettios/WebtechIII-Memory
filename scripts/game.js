@@ -19,6 +19,7 @@ let gameState = PRE_GAME;
 // ============= PAGE START UP =============
 
 document.addEventListener("DOMContentLoaded", function() {
+    showJWT();
     getAllCardsReferences();
     amountOfCards = cards.length;
     for (let i = 0; i < cards.length; i++) {
@@ -28,9 +29,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.querySelector('.start_button').onclick = initialiseGame;
 
-    closedCardColorPicker = document.querySelector('#closed_card_color');
-    closedCardColorPicker.value = defaultClosedColor;
-    closedCardColorPicker.addEventListener("change", updateClosed, false);
+    // closedCardColorPicker = document.querySelector('#closed_card_color');
+    // closedCardColorPicker.value = defaultClosedColor;
+    // closedCardColorPicker.addEventListener("change", updateClosed, false);
+
+    getTopFive();
 
     updateClosed();
 });
@@ -39,10 +42,48 @@ function getAllCardsReferences() {
     cards = document.querySelectorAll('.memory_cards');
 }
 
+function showJWT() {
+    const token = localStorage.getItem('jwt')
+    console.log(token);
+    const auth = `Bearer ${token}`
+
+    var tokens = token.split(".");
+
+    console.log(JSON.parse(atob(tokens[0])));
+    console.log(JSON.parse(atob(tokens[1])));
+}
+
 // ============= SETTINGS FUNCTIONS =============
 
 function updateClosed() {
-    document.querySelectorAll('.card_closed').forEach( element => element.style.background = closedCardColorPicker.value);
+    document.querySelectorAll('.card_closed').forEach( element => element.style.background = defaultClosedColor);
+}
+
+function getTopFive() {
+    const token = localStorage.getItem('jwt')
+
+    fetch('http://localhost:8000/scores',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then( resp => resp.json() )
+        .then( json => {
+            json.sort((a, b) => b.score - a.score);
+
+            let length = ((json.length < 5) ? json.length : 5);
+
+            let list = document.querySelector('#players-top');
+            list.innerHTML = "";
+            for (let i = 0; i < length; i++) {
+                let entry = document.createElement('li');
+                entry.textContent = json[i].username+': '+json[i].score;
+                list.appendChild(entry);
+            }
+        } )
 }
 
 // ============= INI GAME FUNCTIONS =============
@@ -67,9 +108,9 @@ function iniCardsForGame(amount) {
     const CATS = "2";
     const LOREM = "3";
 
-    let choice = document.getElementById("images");
+    //let choice = document.getElementById("images");
 
-    switch (choice.value) {
+    switch (1) {
         case DOGS:
             fetch("https://dog.ceo/api/breeds/image/random/"+amount)
                 .then((response) => response.json())
@@ -214,7 +255,7 @@ function resetNonePairs(){
             let card = document.getElementById(openCards[openCardsKey]);
             card.classList.remove('card_open')
             card.classList.add('card_closed')
-            card.style.background = closedCardColorPicker.value;
+            card.style.background = defaultClosedColor;
         }
         openCards = [];
     }

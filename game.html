@@ -14,6 +14,10 @@
         <div aria-hidden="true" id="loading" class="screen-cover">
             <div id="loading-text"></div>
         </div>
+        <div id="menu-area">
+            <a class="active" href="/login.html">Log uit</a>
+            <a class="active" href="/settings.html">Settings</a>
+        </div>
         <div class="container">
             <div class="game_section">
                 <div class="game_info text_center">
@@ -134,31 +138,18 @@
                     </div>
                 </div>
             </div>
-            <div aria-label="Sectie voor alle settings en top vijf score" class="settings_section">
+                <div aria-label="Sectie voor alle settings en top vijf score" class="settings_section">
                 <div class="settings_container">
                     <div class="top_five">
                         <b>Top vijf.</b>
-                        <ol>
-                            <li>Barack Obama : 200</li>
-                            <li>Bernie Sanders : 300</li>
-                            <li>Hilary Clinton : 400</li>
-                            <li>Donald Troep : 500</li>
-                            <li>Jeb Bush : 600</li>
+                        <ol id="players-top">
+                            Loading...
                         </ol>
                     </div>
                     <div class="avg_playtime">
                         <label for="average_playtime"><b>Gemiddelde speeltijd:</b></label> <span id="average_playtime">05 (645)</span>
                     </div>
                     <div class="board_setting">
-                        <div class="setting_spacing">
-                            <label aria-label="Optie om de kaarten plaatjes te selecteren" for="images"><b>Kaarten plaatjes:</b></label>
-                            <select name="images" id="images">
-                                <option value="1">Honden</option>
-                                <option value="2">Katten</option>
-                                <option value="3">Lorem picsum</option>
-                            </select>
-                        </div>
-                        <br>
                         <div class="setting_spacing">
                             <label aria-label="Optie om bord groote aan te passen" for="board_size"><b>Afmeting bord:</b></label>
                             <select name="board_size" id="board_size">
@@ -169,10 +160,7 @@
                         </div>
                         <br>
                     </div>
-                    <div class="color_section">
-                        <label aria-label="Kleur kiezer voor gesloten kaarten" for="closed_card_color">Gesloten kaarten:</label>
-                        <input aria-valuenow="#90EE90" type="color" id="closed_card_color" class="card_color" value="#90EE90">
-                    </div>
+
                     <div class="game_start_section">
                         <button aria-label="Knop om het spel te starten" type="button" class="start_button" data-message="Deze knop start het spel.">Start</button>
                     </div>

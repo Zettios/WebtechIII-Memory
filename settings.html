@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Memory - settings</title>
+        <link href="styles/settings.css" type="text/css" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div id="menu-area">
+            <a class="active" href="/login.html">Log uit</a>
+            <a class="active" href="/game.html">Memory</a>
+        </div>
+        <div class="container">
+            <div id="card-type-setting">
+                <label aria-label="Optie om de kaarten plaatjes te selecteren" for="images"><b>Kaarten plaatjes:</b></label>
+                <select name="images" id="images">
+                    <option value="1">Honden</option>
+                    <option value="2">Katten</option>
+                    <option value="3">Lorem picsum</option>
+                </select>
+            </div>
+            <hr>
+            <div id="close-card-color-setting">
+                <label aria-label="Kleur kiezer voor gesloten kaarten" for="closed_card_color">Gesloten kaarten:</label>
+                <input aria-valuenow="#90EE90" type="color" id="closed_card_color" class="card_color" value="#90EE90">
+            </div>
+            <hr>
+            <div id="change-email-section">
+                <label for="email-changer">E-mail:</label><br>
+                <input type="email" id="email-changer">
+            </div>
+
+            <button>Opslaan</button>
+        </div>
+
+    </body>
+</html>

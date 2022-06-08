@@ -1,0 +1,91 @@
+html, body {
+    font-family: Arial, serif;
+}
+
+#menu-area {
+    margin: -8px;
+    background: #333;
+    padding: 0 7px;
+    overflow: hidden;
+}
+
+#menu-area a {
+    padding: 20px 14px;
+    text-decoration: none;
+    color: white;
+    float: right;
+}
+
+#menu-area a:hover {
+    background: grey;
+}
+
+.container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 45px;
+    border: 1px solid grey;
+    padding: 10px;
+}
+
+.container hr {
+    width: 95%;
+    margin: 20px 0;
+    align-self: center;
+}
+
+#email-changer {
+    margin-top: 10px;
+}
+
+.container button {
+    width: 90%;
+    margin-top: 25px;
+    align-self: center;
+}
+
+
+#card-type-setting, #close-card-color-setting, #change-email-section  {
+    align-self: center;
+    width: 90%;
+    text-align: center;
+}
+
+#change-email-section input {
+    width: 95%;
+}
+
+
+@media screen and (min-width: 600px) {
+    .container {
+        width: 75%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .container {
+        width: 65%;
+    }
+
+    #change-email-section input, .container button {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        width: 50%;
+    }
+
+    #change-email-section input, .container button {
+        width: 50%;
+    }
+}
