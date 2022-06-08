@@ -1,4 +1,3 @@
-let closedCardColorPicker;
 let defaultClosedColor = "#90EE90";
 
 let cards;
