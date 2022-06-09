@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
+    let errors = document.querySelector('#errors');
     document.querySelector('.login-button').addEventListener('click', btn => {
         btn.preventDefault();
-        document.querySelector('#errors').innerHTML = "";
+        errors.innerHTML = "";
+
         let username = document.querySelector('#username').value;
         let password = document.querySelector('#password').value;
 
@@ -24,6 +26,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 } )
         }
     })
+
+    if (localStorage.getItem('errorMessage') !== null) {
+        let errorMessage = localStorage.getItem('errorMessage');
+        console.log(errorMessage);
+        errors.innerHTML = errorMessage;
+        localStorage.removeItem('errorMessage');
+    } else {
+        console.log("No external error message.");
+    }
 });
 
 function validateLogin(username, password) {

@@ -1,60 +1,47 @@
 let defaultClosedColor = "#90EE90";
-
 let dogs = 1;
 let cats = 2;
+let lorem = 3;
+
+const token = localStorage.getItem('jwt')
+const auth = `Bearer ${token}`
+const header = JSON.parse(atob(token.split(".")[0]));
+const data = JSON.parse(atob(token.split(".")[1]));
+const playerId = header.sub;
+
+let loader
 
 let image;
 let color;
 let email;
 
 document.addEventListener("DOMContentLoaded", function() {
-    let loader = document.querySelector('.screen-cover');
+    image = document.querySelector('#images');
+    color = document.querySelector('#closed-card-color');
+    email = document.querySelector('#email-changer');
+
+    loader = document.querySelector('.screen-cover');
     document.querySelector('#save-button').addEventListener('click', btn => {
         btn.preventDefault();
-        image = document.querySelector('#images').value;
-        color = document.querySelector('#closed-card-color').value;
-        email = document.querySelector('#email-changer').value;
-
-        loader.style.visibility = "visible";
-
-        console.log("Image: " + image);
-        console.log(color);
-        console.log(email);
-        loader.style.visibility = "hidden";
+        sendNewPlayerInfo()
     })
-    loader.style.visibility = "visible";
-    getPlayerInfo();
-    loader.style.visibility = "hidden";
 
+    getPlayerInfo();
 });
 
+
+// ----- GETTING DATA FUNCTIONS -----
+
 function getPlayerInfo() {
-    const token = localStorage.getItem('jwt')
-    var tokens = token.split(".");
+    loader.style.visibility = "visible";
 
-    let header = JSON.parse(atob(tokens[0]));
-    let data = JSON.parse(atob(tokens[1]));
-    let playerId = header.sub;
-    let bearer = `Bearer ${token}`;
-
-    fetchData(playerId, bearer)
+    fetchData(playerId, auth)
         .then( resp => {
             for (let respons of resp) {
                 respons.json().then(r => handleData(r));
             }
-        })
-
-}
-
-function handleData(data){
-    if (data instanceof Object) {
-        console.log(data.preferred_api);
-        console.log(data.color_closed);
-        console.log(data.color_found);
-    } else {
-        console.log(data);
-        email.value = data;
-    }
+            loader.style.visibility = "hidden";
+        });
 }
 
 function fetchData(playerId, bearer){
@@ -65,7 +52,16 @@ function fetchData(playerId, bearer){
                 'Content-Type': 'application/json',
                 "Authorization": bearer
             }
-        }),
+        })
+            .then(data => {
+                console.log(data.status);
+                if (data.status === 200) {
+                    return data;
+                } else {
+                    console.log("Error!");
+                    handleExpiredToken("");
+                }
+            }),
         fetch('http://localhost:8000/api/player/' + playerId + '/email', {
             method: 'GET',
             headers: {
@@ -76,13 +72,89 @@ function fetchData(playerId, bearer){
     ]);
 }
 
-function showJWT() {
-    const token = localStorage.getItem('jwt')
-    console.log(token);
-    const auth = `Bearer ${token}`
+function handleExpiredToken(msg) {
+    if (msg !== "") {
+        localStorage.setItem('errorMessage', msg);
+    } else {
+        localStorage.setItem('errorMessage', "Log opnieuw in.");
+    }
+    window.location.href = "http://localhost:8001/login.html";
+}
 
-    var tokens = token.split(".");
+function handleData(data){
+    if (data instanceof Object) {
+        image.value = getPreferredAPI(data.preferred_api);
+        if (data.color_closed === "") {
+            color.value = defaultClosedColor;
+        } else {
+            color.value = data.color_closed;
+        }
+    } else {
+        email.value = data;
+    }
+}
 
-    console.log(JSON.parse(atob(tokens[0])));
-    console.log(JSON.parse(atob(tokens[1])));
+function getPreferredAPI(apiCode) {
+    switch (apiCode) {
+        case 'dogs':
+            return dogs;
+        case 'cats':
+            return cats;
+        case 'lorem':
+            return lorem;
+        default:
+            return dogs;
+    }
+}
+
+// ----- SAVING DATA FUNCTIONS -----
+
+function sendNewPlayerInfo() {
+    loader.style.visibility = "visible";
+
+    sendData(playerId, auth)
+        .then( resp => {
+            if (resp[0].status === 204 && resp[1].status === 204) {
+                let success = document.querySelector('#success');
+                success.innerHTML = "";
+                let div = document.createElement('div');
+                div.innerHTML = "Voorkeuren opgeslagen";
+                success.appendChild(div);
+            }
+            loader.style.visibility = "hidden"
+        })
+}
+
+function sendData(playerId, bearer) {
+    return Promise.all([
+        fetch('http://localhost:8000/api/player/' + playerId + '/preferences', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": bearer
+            },
+            body: '{ "api": "'+imageValToAPI(image.value)+'", "color_closed": "'+color.value+'", "color_found": "" }'
+        }),
+        fetch('http://localhost:8000/api/player/' + playerId + '/email', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": bearer
+            },
+            body: '{ "email": "'+email.value+'" }'
+        })
+    ]);
+}
+
+function imageValToAPI(value){
+    switch (parseInt(value)) {
+        case dogs:
+            return 'dogs';
+        case cats:
+            return 'cats';
+        case lorem:
+            return 'lorem';
+        default:
+            return 'dogs';
+    }
 }

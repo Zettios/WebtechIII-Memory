@@ -1,4 +1,13 @@
 let defaultClosedColor = "#90EE90";
+let defaultAPI = 'dogs';
+let prefClosedColor;
+let prefApi;
+
+const token = localStorage.getItem('jwt')
+const auth = `Bearer ${token}`
+const header = JSON.parse(atob(token.split(".")[0]));
+const data = JSON.parse(atob(token.split(".")[1]));
+const playerId = header.sub;
 
 let cards;
 
@@ -18,7 +27,7 @@ let gameState = PRE_GAME;
 // ============= PAGE START UP =============
 
 document.addEventListener("DOMContentLoaded", function() {
-    showJWT();
+    //console.log(token);
     getAllCardsReferences();
     amountOfCards = cards.length;
     for (let i = 0; i < cards.length; i++) {
@@ -28,13 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.querySelector('.start_button').onclick = initialiseGame;
 
-    // closedCardColorPicker = document.querySelector('#closed_card_color');
-    // closedCardColorPicker.value = defaultClosedColor;
-    // closedCardColorPicker.addEventListener("change", updateClosed, false);
-
-    getTopFive();
-
-    updateClosed();
+    getData().then(r => console.log("Success!"));
 });
 
 function getAllCardsReferences() {
@@ -55,10 +58,46 @@ function showJWT() {
 // ============= SETTINGS FUNCTIONS =============
 
 function updateClosed() {
-    document.querySelectorAll('.card_closed').forEach( element => element.style.background = defaultClosedColor);
+    document.querySelectorAll('.card_closed').forEach( element => element.style.background = prefClosedColor);
 }
 
-function getTopFive() {
+function getData() {
+    showLoadingScreen();
+    return Promise.all([
+        fetch('http://localhost:8000/scores', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": auth
+            }
+        })
+            .then( resp => resp.json() )
+            .then( json => {
+                json.sort((a, b) => a.score - b.score);
+                topFiveFunctionality(json);
+
+                return 200;
+            } ),
+        fetch('http://localhost:8000/api/player/' + playerId + '/preferences', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": auth
+            }
+        })
+            .then(resp => resp.json())
+            .then(json => {
+                json.color_closed === "" ? prefClosedColor = defaultClosedColor : prefClosedColor = json.color_closed;
+                json.preferred_api === "" ? prefApi = defaultAPI : prefApi = json.preferred_api;
+                updateClosed();
+                hideLoadingScreen();
+
+                return 200;
+            })
+    ]);
+}
+
+function refreshTopFive() {
     const token = localStorage.getItem('jwt')
 
     fetch('http://localhost:8000/scores',
@@ -71,19 +110,23 @@ function getTopFive() {
         })
         .then( resp => resp.json() )
         .then( json => {
-            json.sort((a, b) => b.score - a.score);
-
-            let length = ((json.length < 5) ? json.length : 5);
-
-            let list = document.querySelector('#players-top');
-            list.innerHTML = "";
-            for (let i = 0; i < length; i++) {
-                let entry = document.createElement('li');
-                entry.textContent = json[i].username+': '+json[i].score;
-                list.appendChild(entry);
-            }
+            json.sort((a, b) => a.score - b.score);
+            topFiveFunctionality(json);
         } )
 }
+
+function topFiveFunctionality(json) {
+    let length = ((json.length < 5) ? json.length : 5);
+
+    let list = document.querySelector('#players-top');
+    list.innerHTML = "";
+    for (let i = 0; i < length; i++) {
+        let entry = document.createElement('li');
+        entry.textContent = json[i].username+': '+json[i].score;
+        list.appendChild(entry);
+    }
+}
+
 
 // ============= INI GAME FUNCTIONS =============
 
@@ -99,30 +142,23 @@ function resetPairsCounter() {
     document.getElementById("found-pairs").innerHTML = "Gevonden kaart paren: 0";
 }
 
-
 function iniCardsForGame(amount) {
     showLoadingScreen();
 
-    const DOGS = "1";
-    const CATS = "2";
-    const LOREM = "3";
-
-    //let choice = document.getElementById("images");
-
-    switch (1) {
-        case DOGS:
+    switch (prefApi) {
+        case "dogs":
             fetch("https://dog.ceo/api/breeds/image/random/"+amount)
                 .then((response) => response.json())
                 .then(data => data.message)
                 .then(message => setCards(message));
             break;
-        case CATS:
+        case "cats":
             fetch("https://api.thecatapi.com/v1/images/search?limit="+amount+"&mime_types=jpg,png")
                 .then((response) => response.json())
                 .then(data => processCatAPI(data))
                 .then(message => setCards(message));
             break;
-        case LOREM:
+        case "lorem":
             fetch("https://picsum.photos/v2/list?page=0&limit="+amount)
                 .then((response) => response.json())
                 .then(data => processLoremAPI(data))
@@ -254,7 +290,7 @@ function resetNonePairs(){
             let card = document.getElementById(openCards[openCardsKey]);
             card.classList.remove('card_open')
             card.classList.add('card_closed')
-            card.style.background = defaultClosedColor;
+            card.style.background = prefClosedColor;
         }
         openCards = [];
     }
@@ -285,8 +321,16 @@ function checkForWin() {
         gameState = PRE_GAME;
         stopTimer();
         showVictoryScreen();
+        saveGame();
         resetCards();
     }
+    // if (foundPairs === 1) {
+    //     gameState = PRE_GAME;
+    //     stopTimer();
+    //     showVictoryScreen();
+    //     saveGame();
+    //     resetCards();
+    // }
 }
 
 function showVictoryScreen() {
@@ -303,4 +347,18 @@ function showVictoryScreen() {
         document.getElementById("win-text").innerHTML = "";
         clearInterval(vTimer);
     }
+}
+
+function saveGame() {
+    let timer = document.querySelector("#timer");
+    fetch('http://localhost:8000/game/save', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": auth
+        },
+        body: '{"id": "'+playerId+'", "score": "'+timer.innerHTML.split(" ")[2]+'", "api": "'+prefApi+'", "color_closed": "'+prefClosedColor+'", "color_found": ""}'
+    })
+        .then(resp => console.log(resp))
+        .then(data => refreshTopFive());
 }
