@@ -27,7 +27,6 @@ let gameState = PRE_GAME;
 // ============= PAGE START UP =============
 
 document.addEventListener("DOMContentLoaded", function() {
-    //console.log(token);
     getAllCardsReferences();
     amountOfCards = cards.length;
     for (let i = 0; i < cards.length; i++) {
@@ -42,17 +41,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function getAllCardsReferences() {
     cards = document.querySelectorAll('.memory_cards');
-}
-
-function showJWT() {
-    const token = localStorage.getItem('jwt')
-    console.log(token);
-    const auth = `Bearer ${token}`
-
-    var tokens = token.split(".");
-
-    console.log(JSON.parse(atob(tokens[0])));
-    console.log(JSON.parse(atob(tokens[1])));
 }
 
 // ============= SETTINGS FUNCTIONS =============
@@ -85,14 +73,23 @@ function getData() {
                 "Authorization": auth
             }
         })
-            .then(resp => resp.json())
-            .then(json => {
+            .then( data => {
+                if (data.status === 401) {
+                    throw new Error("Log opnieuw in.");
+                }
+                return data;
+            })
+            .then( resp => resp.json())
+            .then( json => {
                 json.color_closed === "" ? prefClosedColor = defaultClosedColor : prefClosedColor = json.color_closed;
                 json.preferred_api === "" ? prefApi = defaultAPI : prefApi = json.preferred_api;
                 updateClosed();
                 hideLoadingScreen();
 
                 return 200;
+            })
+            .catch(err => {
+                handleExpiredToken(err);
             })
     ]);
 }
@@ -126,7 +123,6 @@ function topFiveFunctionality(json) {
         list.appendChild(entry);
     }
 }
-
 
 // ============= INI GAME FUNCTIONS =============
 
@@ -172,19 +168,6 @@ function iniCardsForGame(amount) {
                 .then(message => setCards(message));
             break;
     }
-}
-
-function showLoadingScreen() {
-    let loading = document.getElementById("loading");
-    loading.ariaHidden = "false";
-    loading.style.visibility = "visible";
-    document.getElementById("loading-text").innerHTML = "Loading..."
-}
-
-function hideLoadingScreen() {
-    let loading = document.getElementById("loading");
-    loading.ariaHidden = "true";
-    loading.style.visibility = "hidden";
 }
 
 function processCatAPI(data) {
@@ -261,7 +244,6 @@ function startTimer() {
 function stopTimer(){
     if (intervalTimer !== undefined) {
         clearInterval(intervalTimer);
-        //document.querySelector("#timer").innerHTML = "Verlopen tijd: "+startTime.toString()+" seconden";
     }
 }
 
@@ -324,6 +306,8 @@ function checkForWin() {
         saveGame();
         resetCards();
     }
+
+    // --- Uncomment for testing ---
     // if (foundPairs === 1) {
     //     gameState = PRE_GAME;
     //     stopTimer();
@@ -359,6 +343,30 @@ function saveGame() {
         },
         body: '{"id": "'+playerId+'", "score": "'+timer.innerHTML.split(" ")[2]+'", "api": "'+prefApi+'", "color_closed": "'+prefClosedColor+'", "color_found": ""}'
     })
-        .then(resp => console.log(resp))
-        .then(data => refreshTopFive());
+        .then(resp => refreshTopFive())
+}
+
+// ============= MISC FUNCTIONS =============
+
+function showLoadingScreen() {
+    let loading = document.getElementById("loading");
+    loading.ariaHidden = "false";
+    loading.style.visibility = "visible";
+    document.getElementById("loading-text").innerHTML = "Loading..."
+}
+
+function hideLoadingScreen() {
+    let loading = document.getElementById("loading");
+    loading.ariaHidden = "true";
+    loading.style.visibility = "hidden";
+}
+
+
+function handleExpiredToken(msg) {
+    if (msg !== "") {
+        localStorage.setItem('errorMessage', msg);
+    } else {
+        localStorage.setItem('errorMessage', "Log opnieuw in.");
+    }
+    window.location.href = "http://localhost:8001/login.html";
 }

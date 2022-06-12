@@ -33,15 +33,18 @@ document.addEventListener("DOMContentLoaded", function() {
 // ----- GETTING DATA FUNCTIONS -----
 
 function getPlayerInfo() {
-    loader.style.visibility = "visible";
+    showLoadingScreen();
 
     fetchData(playerId, auth)
         .then( resp => {
-            for (let respons of resp) {
-                respons.json().then(r => handleData(r));
+            if (resp[0] === 401 || resp[1] === 401) {
+                throw new Error("Log opnieuw in.");
             }
-            loader.style.visibility = "hidden";
-        });
+            hideLoadingScreen();
+        })
+        .catch(err => {
+            handleExpiredToken(err);
+        })
 }
 
 function fetchData(playerId, bearer){
@@ -54,13 +57,15 @@ function fetchData(playerId, bearer){
             }
         })
             .then(data => {
-                console.log(data.status);
-                if (data.status === 200) {
-                    return data;
-                } else {
-                    console.log("Error!");
-                    handleExpiredToken("");
+                if (data.status === 401) {
+                    throw new Error();
                 }
+                return data
+            })
+            .then( resp => resp.json() )
+            .then( json => handleData(json) )
+            .catch(err => {
+                return 401;
             }),
         fetch('http://localhost:8000/api/player/' + playerId + '/email', {
             method: 'GET',
@@ -69,16 +74,18 @@ function fetchData(playerId, bearer){
                 "Authorization": bearer
             }
         })
+            .then(data => {
+                if (data.status === 401) {
+                    throw new Error("Log opnieuw in.");
+                }
+                return data;
+            })
+            .then( resp => resp.json() )
+            .then( json => handleData(json) )
+            .catch(err => {
+                return 401;
+            }),
     ]);
-}
-
-function handleExpiredToken(msg) {
-    if (msg !== "") {
-        localStorage.setItem('errorMessage', msg);
-    } else {
-        localStorage.setItem('errorMessage', "Log opnieuw in.");
-    }
-    window.location.href = "http://localhost:8001/login.html";
 }
 
 function handleData(data){
@@ -110,18 +117,23 @@ function getPreferredAPI(apiCode) {
 // ----- SAVING DATA FUNCTIONS -----
 
 function sendNewPlayerInfo() {
-    loader.style.visibility = "visible";
+    showLoadingScreen();
 
     sendData(playerId, auth)
         .then( resp => {
-            if (resp[0].status === 204 && resp[1].status === 204) {
+            if (resp[0] === 401 || resp[1] === 401){
+                throw new Error("Log opnieuw in.");
+            } else if (resp[0] === 204 && resp[1] === 204) {
                 let success = document.querySelector('#success');
                 success.innerHTML = "";
                 let div = document.createElement('div');
                 div.innerHTML = "Voorkeuren opgeslagen";
                 success.appendChild(div);
             }
-            loader.style.visibility = "hidden"
+            hideLoadingScreen();
+        })
+        .catch(err => {
+            handleExpiredToken(err);
         })
 }
 
@@ -134,7 +146,16 @@ function sendData(playerId, bearer) {
                 "Authorization": bearer
             },
             body: '{ "api": "'+imageValToAPI(image.value)+'", "color_closed": "'+color.value+'", "color_found": "" }'
-        }),
+        })
+            .then(data => {
+                if (data.status === 401) {
+                    throw new Error();
+                }
+                return data.status;
+            })
+            .catch(err => {
+                return 401;
+            }),
         fetch('http://localhost:8000/api/player/' + playerId + '/email', {
             method: 'PUT',
             headers: {
@@ -143,6 +164,15 @@ function sendData(playerId, bearer) {
             },
             body: '{ "email": "'+email.value+'" }'
         })
+            .then(data => {
+                if (data.status === 401) {
+                    throw new Error();
+                }
+                return data.status;
+            })
+            .catch(err => {
+                return 401;
+            })
     ]);
 }
 
@@ -158,3 +188,28 @@ function imageValToAPI(value){
             return 'dogs';
     }
 }
+
+// ----- MISC FUNCTIONS -----
+
+function handleExpiredToken(msg) {
+    if (msg !== "") {
+        localStorage.setItem('errorMessage', msg);
+    } else {
+        localStorage.setItem('errorMessage', "Log opnieuw in.");
+    }
+    window.location.href = "http://localhost:8001/login.html";
+}
+
+function showLoadingScreen() {
+    let loading = document.getElementById("loading");
+    loading.ariaHidden = "false";
+    loading.style.visibility = "visible";
+    document.getElementById("loading-text").innerHTML = "Loading..."
+}
+
+function hideLoadingScreen() {
+    let loading = document.getElementById("loading");
+    loading.ariaHidden = "true";
+    loading.style.visibility = "hidden";
+}
+
